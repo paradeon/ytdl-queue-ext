@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "yt-dlp Queue",
+  "version": "0.1.0",
+  "description": "Extract video info from supported sites and queue downloads for yt-dlp",
+  "permissions": ["activeTab", "cookies", "nativeMessaging", "scripting", "storage"],
+  "host_permissions": [
+    "https://*.iyf.tv/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "scripts": ["extractors/registry.js", "extractors/iyf.js", "background.js"]
+  },
+  "action": {
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "yt-dlp Queue"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.iyf.tv/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": false
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "ytdlp-queue@local",
+      "strict_min_version": "109.0"
+    }
+  }
+}

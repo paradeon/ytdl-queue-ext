@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>yt-dlp Queue</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div id="root">
+    <div id="state-unsupported" class="state hidden">
+      <p class="muted">This page is not supported.</p>
+    </div>
+
+    <div id="state-loading" class="state hidden">
+      <div class="spinner"></div>
+      <p class="muted">Loading video info…</p>
+    </div>
+
+    <div id="state-error" class="state hidden">
+      <p class="error-msg" id="error-text"></p>
+    </div>
+
+    <div id="state-loaded" class="state hidden">
+      <!-- Series header -->
+      <div id="series-header">
+        <img id="series-thumb" src="" alt="" hidden>
+        <div id="series-meta">
+          <div id="series-title"></div>
+          <div id="series-count" class="muted"></div>
+        </div>
+      </div>
+
+      <!-- Episode list -->
+      <div id="episodes-section" hidden>
+        <div class="section-header">
+          <span class="section-label">Episodes</span>
+          <span class="ep-controls">
+            <button id="btn-ep-all" class="link-btn">All</button>
+            <button id="btn-ep-none" class="link-btn">None</button>
+          </span>
+        </div>
+        <div id="episode-list"></div>
+      </div>
+
+      <!-- Format list -->
+      <div id="formats-section">
+        <div class="section-label">Format</div>
+        <div id="format-loading" class="muted small" hidden>Loading formats…</div>
+        <div id="format-list"></div>
+      </div>
+
+      <!-- Queue button -->
+      <button id="btn-queue" disabled>Queue Download</button>
+      <div id="queue-result" class="hidden"></div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

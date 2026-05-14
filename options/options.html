@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>yt-dlp Queue — Options</title>
+  <style>
+    body { font-family: system-ui, sans-serif; font-size: 13px; padding: 16px; max-width: 480px; }
+    label { display: block; margin-bottom: 6px; font-weight: 600; }
+    input[type=text] {
+      width: 100%; padding: 6px 8px; border: 1px solid #ccc;
+      border-radius: 4px; font-size: 13px; font-family: monospace;
+    }
+    .hint { color: #888; font-size: 11px; margin-top: 4px; }
+    button { margin-top: 12px; padding: 6px 14px; }
+    #status { margin-top: 8px; color: green; font-size: 12px; min-height: 16px; }
+  </style>
+</head>
+<body>
+  <h2 style="margin-bottom:16px">yt-dlp Queue Settings</h2>
+
+  <label for="queueDir">Queue directory</label>
+  <input type="text" id="queueDir" placeholder="~/.local/share/ytdlp-queue-ext/queue">
+  <div class="hint">The native host will create this directory if it does not exist. Use an absolute path or ~ for home.</div>
+
+  <div style="margin-top:16px;display:flex;gap:16px">
+    <div style="flex:1">
+      <label for="sleepMin">Min sleep between episodes (s)</label>
+      <input type="number" id="sleepMin" min="0" step="1" style="width:100%;padding:6px 8px;border:1px solid #ccc;border-radius:4px;font-size:13px">
+    </div>
+    <div style="flex:1">
+      <label for="sleepMax">Max sleep between episodes (s)</label>
+      <input type="number" id="sleepMax" min="0" step="1" style="width:100%;padding:6px 8px;border:1px solid #ccc;border-radius:4px;font-size:13px">
+    </div>
+  </div>
+  <div class="hint">A random delay in [min, max] is inserted between episode downloads. Set both to 0 to disable. Default: 3–8 s.</div>
+
+  <button id="save">Save</button>
+  <div id="status"></div>
+
+  <script src="options.js"></script>
+</body>
+</html>
