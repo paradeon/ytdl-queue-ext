@@ -396,8 +396,22 @@ function injectBubble(tabId) {
     });
 
     $('btn-reset').addEventListener('click', () => {
-      shadow.querySelectorAll('#episode-list .ep-item').forEach(row =>
-        row.classList.remove('ep-active', 'ep-queued', 'ep-failed'));
+      // Defensive: hide action row and clear stop/cancel handlers in case
+      // reset is triggered while an operation is still winding down.
+      $('action-row').classList.remove('visible');
+      $('btn-stop').onclick   = null;
+      $('btn-cancel').onclick = null;
+
+      // Reset episode selection back to just the current episode, then sync DOM.
+      selectedEpisodeIds = new Set([seriesInfo.currentEpisodeId]);
+      shadow.querySelectorAll('#episode-list .ep-item').forEach(row => {
+        row.classList.remove('ep-active', 'ep-queued', 'ep-failed');
+        const isCurrent = row.dataset.epId === seriesInfo.currentEpisodeId;
+        row.classList.toggle('checked', isCurrent);
+        const cb = row.querySelector('input');
+        if (cb) cb.checked = isCurrent;
+      });
+
       setCheckboxesDisabled(false);
       $('queue-result').className = 'hidden';
       $('post-queue-row').classList.remove('visible');
