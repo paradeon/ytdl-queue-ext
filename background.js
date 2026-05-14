@@ -3,14 +3,13 @@
 
 const api = typeof browser !== 'undefined' ? browser : chrome;
 const NATIVE_HOST = 'com.ytdl_queue.host';
-const DEFAULT_QUEUE_DIR = '~/.local/share/ytdl-queue-ext/queue';
-const DEBUG_LOG = '~/.local/share/ytdl-queue-ext/debug.log';
+// EXT_DEFAULTS is defined in config.js, loaded first via manifest background.scripts.
 
 function dbgLog(...args) {
   const line = `[${new Date().toISOString()}] ${args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' ')}`;
   console.log(line);
   // fire-and-forget — don't await, don't block callers
-  nativeSend({ action: 'append', path: DEBUG_LOG, line }).catch(() => {});
+  nativeSend({ action: 'append', path: EXT_DEFAULTS.debugLog, line }).catch(() => {});
 }
 
 // ─── Message routing ──────────────────────────────────────────────────────────
@@ -190,7 +189,7 @@ async function handleQueueBatch(msg) {
     const extractor = EXTRACTORS.get(pageState.extractor);
     const { seriesId, entries, cookiesText, queueMeta } = extractor.buildBatchQueueEntry(info, pageState, cookieStr, episodes, formatId);
 
-    const settings = await api.storage.sync.get({ queueDir: DEFAULT_QUEUE_DIR });
+    const settings = await api.storage.sync.get({ queueDir: EXT_DEFAULTS.queueDir });
     const base          = sanitize(pageState.extractor) + '_' + sanitize(seriesId);
     const infoFilename  = base + '.info.json';
     const cookFilename  = base + '.cookies.txt';

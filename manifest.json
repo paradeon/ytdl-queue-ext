@@ -9,7 +9,7 @@
   ],
   "background": {
     "service_worker": "background.js",
-    "scripts": ["extractors/registry.js", "extractors/iyf.js", "background.js"]
+    "scripts": ["config.js", "extractors/registry.js", "extractors/iyf.js", "background.js"]
   },
   "action": {
     "default_icon": {
