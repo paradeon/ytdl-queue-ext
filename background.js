@@ -2,9 +2,9 @@
 // Extractors are loaded via manifest background.scripts; no importScripts needed.
 
 const api = typeof browser !== 'undefined' ? browser : chrome;
-const NATIVE_HOST = 'com.ytdlp_queue.host';
-const DEFAULT_QUEUE_DIR = '~/.local/share/ytdlp-queue-ext/queue';
-const DEBUG_LOG = '~/.local/share/ytdlp-queue-ext/debug.log';
+const NATIVE_HOST = 'com.ytdl_queue.host';
+const DEFAULT_QUEUE_DIR = '~/.local/share/ytdl-queue-ext/queue';
+const DEBUG_LOG = '~/.local/share/ytdl-queue-ext/debug.log';
 
 function dbgLog(...args) {
   const line = `[${new Date().toISOString()}] ${args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' ')}`;

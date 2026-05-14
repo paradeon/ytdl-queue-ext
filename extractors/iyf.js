@@ -271,7 +271,7 @@ EXTRACTORS.register('iyf', {
       api_host:    IYF_API_HOST,
     };
     const meta = {
-      schema:    'ytdlp-queue/1',
+      schema:    'ytdl-queue/1',
       extractor: 'iyf',
       queued_at: new Date().toISOString(),
     };
@@ -316,7 +316,7 @@ EXTRACTORS.register('iyf', {
     });
 
     const queueMeta = {
-      schema:     'ytdlp-queue/1',
+      schema:     'ytdl-queue/1',
       extractor:  'iyf',
       queued_at:  new Date().toISOString(),
 

@@ -1,5 +1,5 @@
 const api = typeof browser !== 'undefined' ? browser : chrome;
-const DEFAULTS = { queueDir: '~/.local/share/ytdlp-queue-ext/queue', sleepMin: 3, sleepMax: 8 };
+const DEFAULTS = { queueDir: '~/.local/share/ytdl-queue-ext/queue', sleepMin: 3, sleepMax: 8 };
 
 (async () => {
   const data = await api.storage.sync.get(DEFAULTS);

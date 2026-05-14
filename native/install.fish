@@ -3,10 +3,10 @@
 
 set SCRIPT_DIR (cd (dirname (status filename)); and pwd)
 set HOST_PATH $SCRIPT_DIR/host.py
-set HOST_NAME com.ytdlp_queue.host
+set HOST_NAME com.ytdl_queue.host
 
 # Firefox extension ID — must match manifest.json browser_specific_settings.gecko.id
-set FIREFOX_EXT_ID ytdlp-queue@local
+set FIREFOX_EXT_ID ytdl-queue@local
 
 # Chrome/Chromium extension ID — set via:  CHROME_EXT_ID=<id> fish install.fish
 set CHROME_EXT_ID (set -q CHROME_EXT_ID; and echo $CHROME_EXT_ID; or echo __REPLACE_WITH_CHROME_EXTENSION_ID__)
